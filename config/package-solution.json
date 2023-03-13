@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "address-bookusing-spfx-client-side-solution",
+    "id": "ba90294b-2e42-43ee-8a9e-e6bdef8cb28b",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.16.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "address-bookusing-spfx description"
+      },
+      "longDescription": {
+        "default": "address-bookusing-spfx description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "address-bookusing-spfx Feature",
+        "description": "The feature that activates elements of the address-bookusing-spfx solution.",
+        "id": "5a31f436-b15f-466e-a933-0b1e9dd0cba7",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/address-bookusing-spfx.sppkg"
+  }
+}

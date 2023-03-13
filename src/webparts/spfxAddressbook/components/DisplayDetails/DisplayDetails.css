@@ -1,0 +1,35 @@
+#nameOfContact{
+    font-weight: normal;
+color: black;
+    font-size: 32px;
+  }
+  .detailsSection{
+    display: flex;
+    gap:125px;
+  }
+  .editAndDeleteIcons{
+    display: flex;
+    gap:50px;
+    margin-top: 32px;
+  }
+  .displayDetails{
+    margin: 20px 90px;
+
+    font-size: 17px;
+  }
+  #editlink{
+    text-decoration: none;
+    color: black;
+  }
+  #editimage{
+    height: 15px;
+    margin-top:8px;
+    padding-right: 3px;
+  }#deleteimage{
+    height: 20px;
+    margin-top:5px;
+    padding-right: 3px;
+  }
+  .viewbtns{
+    cursor: pointer;
+  }

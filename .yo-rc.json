@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "16.14.2",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.4.1"
+    },
+    "version": "1.16.1",
+    "libraryName": "address-bookusing-spfx",
+    "libraryId": "ba90294b-2e42-43ee-8a9e-e6bdef8cb28b",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "address-bookusing-spfx",
+    "solutionShortDescription": "address-bookusing-spfx description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

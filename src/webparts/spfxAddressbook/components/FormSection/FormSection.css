@@ -1,0 +1,77 @@
+#addMobile,#addLandline{
+    width:282px;
+    height: 35px;
+    margin-top: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;  
+  }
+  #addLandline{
+    margin-left: 14px;
+  }
+  #mobilelabel{
+    padding-right: 244px;
+  }
+  textarea{
+    width:585px;
+    font-size: 16px;
+    height: 70px; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .addingDetails{
+    margin-top: 45px;
+  }
+  #addingDetailsForm{
+    border: 2px solid gray;
+    width: 610px;
+    padding: 30px ;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-weight: bold;
+    box-shadow: 0px 0px 25px;
+    margin-left: 20px;
+    margin-top: -20px;
+  }
+  .formbutton{
+    background-color: green;
+    color: White;
+    border: 2px solid green;
+    margin-left: 428px;
+    width: 70px;
+    height: 40px;
+    font-size: 18px;
+    margin-top:5px;
+    cursor: pointer;
+
+  }
+  .star{
+    color: red;
+  }
+  #cancelButton{
+    background-color: green;
+    color: White;
+    border: 2px solid green;
+    margin-top:5px;
+    cursor: pointer;
+    width: 70px;
+    font-size: 18px;
+    height: 40px;
+  }
+  
+  .buttondiv{
+    display: flex;
+    gap:22px;
+  }
+  .warnings{
+    color:red;
+    margin-bottom: 15px;
+    font-size: 13px;
+    font-weight: light;
+  }
+  .inbox {
+    width: 585px;
+    height: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }

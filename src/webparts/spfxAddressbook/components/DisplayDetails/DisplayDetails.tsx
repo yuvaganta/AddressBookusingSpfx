@@ -2,7 +2,7 @@ import "./DisplayDetails.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import * as React from "react";
 import { useEffect } from "react";
-import { IStatesObj, IContact } from "../../../../Models/Models";
+import { IStatesObj } from "../../../../Models/Models";
 import { ContactServices } from "../../../../Services/ContactServices";
 // import { images } from "../../assets/images";
 let contactServices: ContactServices = new ContactServices();
@@ -14,7 +14,7 @@ export function DisplayDetails({
   statesObj: IStatesObj;
 }) {
   const navigate = useNavigate();
-  let contact: IContact;
+  let contact: any;
   contact = contactServices.getContactById(statesObj.selectedContactId);
   function editHandler() {
     setStatesObj({
@@ -30,7 +30,7 @@ export function DisplayDetails({
         "Are you sure you want to delete " + contact.name + "'s details"
       )
     ) {
-      contactServices.DeleteContact(statesObj.selectedContactId);
+      contactServices.deleteContact(statesObj.selectedContactId);
       setStatesObj({
         ...statesObj,
         showForm: false,

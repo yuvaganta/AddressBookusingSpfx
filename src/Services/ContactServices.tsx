@@ -1,33 +1,58 @@
-// import React from "react";
-import { contactList } from "../Models/Data";
 import { IContact } from "../Models/Models";
+import { sp } from "@pnp/sp/presets/all";
 export class ContactServices {
-  static getContactById: any;
-  AddContact(contact: IContact) {
-    contactList.push(contact);
-  }
-  getContactById(contactId: string): IContact {
-    var contact: IContact;
-    contact = contactList.find((x: { id: string; }) => x.id === contactId) as IContact;
-    if (contact == undefined) {
-      contact = {
-        id: "",
-        name: "",
-        email: "",
-        mobile: "",
-        landline: "",
-        website: "",
-        address: "",
-      };
-    }
+  addContact = async (contact: IContact) => {
+    await sp.web.lists
+      .getByTitle("ContactList")
+      .items.add({
+        name: contact.name,
+        mobile: contact.mobile,
+        email: contact.email,
+        landline: contact.landline,
+        address: contact.address,
+        website: contact.website,
+      })
+      .then(() => {
+        return true;
+      });
+  };
+  getContactById = async (contactId: string): Promise<IContact> => {
+    const contact: any = await sp.web.lists
+      .getByTitle("ContactList")
+      .items.getById(parseInt(contactId))
+      .get();
     return contact;
-  }
-  UpdateContact(contactId: string, newContact: IContact) {
-    let contact: IContact;
-    contact = this.getContactById(contactId);
-    contactList[contactList.indexOf(contact)] = newContact;
-  }
-  DeleteContact(contactId: string) {
-    contactList.splice(contactList.indexOf(this.getContactById(contactId)), 1);
-  }
+  };
+  deleteContact = async (contactId: string): Promise<boolean> => {
+    return await sp.web.lists
+      .getByTitle("ContactList")
+      .items.getById(parseInt(contactId))
+      .delete()
+      .then(() => {
+        return true;
+      });
+  };
+  updateContact = async (
+    contactId: string,
+    contact: IContact
+  ): Promise<boolean> => {
+    return sp.web.lists
+      .getByTitle("ContactList")
+      .items.getById(parseInt(contactId))
+      .update({
+        name: contact.name,
+        mobile: contact.mobile,
+        email: contact.email,
+        landline: contact.landline,
+        address: contact.address,
+        website: contact.website,
+      })
+      .then(() => {
+        return true;
+      });
+  };
+  getAllContacts = async () => {
+    console.log(sp.web.lists.getByTitle("ContactList").items.get());
+    return await sp.web.lists.getByTitle("ContactList").items.get();
+  };
 }

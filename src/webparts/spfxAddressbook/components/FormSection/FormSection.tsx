@@ -22,7 +22,7 @@ export function FormSection({
   statesObj: IStatesObj;
 }) {
   const navigate = useNavigate();
-  let contactUsed: IContact;
+  let contactUsed: any;
   contactUsed = contactServices.getContactById(statesObj.selectedContactId);
   const [formFields, setFormFields] = useState<IContact>({ ...contactUsed });
   useEffect(() => {
@@ -75,7 +75,7 @@ export function FormSection({
       if (statesObj.formAction == "add") {
         let newContact: IContact;
         newContact = {
-          id: Guid.create().toString(),
+          Id: Guid.create().toString(),
           name: formFields.name,
           email: formFields.email,
           mobile: formFields.mobile,
@@ -83,14 +83,14 @@ export function FormSection({
           website: formFields.website,
           landline: formFields.landline,
         };
-        contactServices.AddContact(newContact);
+        contactServices.addContact(newContact);
         setStatesObj({
           ...statesObj,
           showForm: false,
           showDisplayDetails: true,
-          selectedContactId: newContact.id,
+          selectedContactId: newContact.Id,
         });
-        navigate("/details/" + newContact.id);
+        navigate("/details/" + newContact.Id);
       } else {
         if (
           window.confirm(
@@ -99,7 +99,7 @@ export function FormSection({
         ) {
           let newContact: IContact;
           newContact = {
-            id: statesObj.selectedContactId,
+            Id: statesObj.selectedContactId,
             name: formFields.name,
             email: formFields.email,
             mobile: formFields.mobile,
@@ -107,11 +107,11 @@ export function FormSection({
             website: formFields.website,
             landline: formFields.landline,
           };
-          contactServices.UpdateContact(newContact.id, newContact);
+          contactServices.updateContact(newContact.Id, newContact);
           let varForm: IFormData = {
             action: "",
             name: "",
-            id: "",
+            Id: "",
             mobile: "",
             address: "",
             email: "",
@@ -123,7 +123,7 @@ export function FormSection({
             ...statesObj,
             showForm: false,
             showDisplayDetails: true,
-            selectedContactId: newContact.id,
+            selectedContactId: newContact.Id,
           });
           navigate("/details/" + statesObj.selectedContactId);
         } else {

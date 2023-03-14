@@ -5,7 +5,6 @@ import { FormSection } from "../FormSection/FormSection";
 import { Route, Routes } from "react-router-dom";
 import * as React from "react";
 import { IStatesObj } from "../../../../Models/Models";
-// import {styles } from "MainSection.module.css";
 export function MainSection({
   statesObj,
   setStatesObj,

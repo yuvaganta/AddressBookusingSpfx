@@ -1,7 +1,7 @@
 // import React from "react";
 export interface IContact {
     name:string;
-    id:string;
+    Id:string;
     email:string;
     mobile:string;
     website:string;
@@ -10,7 +10,7 @@ export interface IContact {
 }
 export interface IFormData{
     action:string;
-    id:string;
+    Id:string;
     name:string;
     email:string;
     mobile:string;

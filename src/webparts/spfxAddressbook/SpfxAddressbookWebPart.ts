@@ -12,6 +12,8 @@ import * as strings from 'SpfxAddressbookWebPartStrings';
 import SpfxAddressbook from './components/SpfxAddressbook';
 import { ISpfxAddressbookProps } from './components/ISpfxAddressbookProps';
 
+import { sp } from "@pnp/sp/presets/all";
+
 export interface ISpfxAddressbookWebPartProps {
   description: string;
 }
@@ -20,6 +22,14 @@ export default class SpfxAddressbookWebPart extends BaseClientSideWebPart<ISpfxA
 
   private _isDarkTheme: boolean = false;
   private _environmentMessage: string = '';
+
+  protected onInit(): Promise<void> {
+    return super.onInit().then(_ => {
+      sp.setup({
+        spfxContext: this.context as any
+      });
+    });
+  }
 
   public render(): void {
     const element: React.ReactElement<ISpfxAddressbookProps> = React.createElement(
@@ -36,39 +46,34 @@ export default class SpfxAddressbookWebPart extends BaseClientSideWebPart<ISpfxA
     ReactDom.render(element, this.domElement);
   }
 
-  protected onInit(): Promise<void> {
-    return this._getEnvironmentMessage().then(message => {
-      this._environmentMessage = message;
-    });
-  }
 
 
 
-  private _getEnvironmentMessage(): Promise<string> {
-    if (!!this.context.sdks.microsoftTeams) { // running in Teams, office.com or Outlook
-      return this.context.sdks.microsoftTeams.teamsJs.app.getContext()
-        .then(context => {
-          let environmentMessage: string = '';
-          switch (context.app.host.name) {
-            case 'Office': // running in Office
-              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOffice : strings.AppOfficeEnvironment;
-              break;
-            case 'Outlook': // running in Outlook
-              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOutlook : strings.AppOutlookEnvironment;
-              break;
-            case 'Teams': // running in Teams
-              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentTeams : strings.AppTeamsTabEnvironment;
-              break;
-            default:
-              throw new Error('Unknown host');
-          }
+  // private _getEnvironmentMessage(): Promise<string> {
+  //   if (!!this.context.sdks.microsoftTeams) { // running in Teams, office.com or Outlook
+  //     return this.context.sdks.microsoftTeams.teamsJs.app.getContext()
+  //       .then(context => {
+  //         let environmentMessage: string = '';
+  //         switch (context.app.host.name) {
+  //           case 'Office': // running in Office
+  //             environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOffice : strings.AppOfficeEnvironment;
+  //             break;
+  //           case 'Outlook': // running in Outlook
+  //             environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOutlook : strings.AppOutlookEnvironment;
+  //             break;
+  //           case 'Teams': // running in Teams
+  //             environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentTeams : strings.AppTeamsTabEnvironment;
+  //             break;
+  //           default:
+  //             throw new Error('Unknown host');
+  //         }
 
-          return environmentMessage;
-        });
-    }
+  //         return environmentMessage;
+  //       });
+  //   }
 
-    return Promise.resolve(this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentSharePoint : strings.AppSharePointEnvironment);
-  }
+  //   return Promise.resolve(this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentSharePoint : strings.AppSharePointEnvironment);
+  // }
 
   protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {
     if (!currentTheme) {

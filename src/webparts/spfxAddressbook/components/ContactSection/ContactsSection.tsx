@@ -1,7 +1,9 @@
 import * as React from "react";
-import { contactList } from "../../../../Models/Data";
+
 import { IStatesObj, IContact } from "../../../../Models/Models";
+import { ContactServices } from "../../../../Services/ContactServices";
 import { DisplayMiniDetails } from "../DisplayDetailsCards/DisplayMiniDetails";
+let contactServices: ContactServices = new ContactServices();
 export function ContactsSection({
   statesObj,
   setStatesObj,
@@ -9,19 +11,29 @@ export function ContactsSection({
   statesObj: IStatesObj;
   setStatesObj: Function;
 }) {
+  // let contacts: IContact[];
+  // contactServices.getAllContacts().then((items) => {
+  //   contacts = items as IContact[];
+  //   console.log(contacts);
+  // });
   return (
     <div>
       <h3>CONTACTS</h3>
       <div className="contactul">
         <ul className="contact" id="contactBook">
-          {contactList.map((contact: IContact) => (
-            <DisplayMiniDetails
-              key={contact.id}
-              contact={contact}
-              statesObj={statesObj}
-              setStatesObj={setStatesObj}
-            ></DisplayMiniDetails>
-          ))}
+          {contactServices.getAllContacts().then((items) => {
+            items.map((contact: IContact) => (
+              <li>
+                <DisplayMiniDetails
+                  key={contact.Id}
+                  contact={contact}
+                  statesObj={statesObj}
+                  setStatesObj={setStatesObj}
+                ></DisplayMiniDetails>
+              </li>
+            ));
+          })}
+          ;
         </ul>
       </div>
     </div>
